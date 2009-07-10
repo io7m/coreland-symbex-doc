@@ -1,0 +1,4 @@
+(section
+  (title "License")
+
+  (para-verbatim (render "../LICENSE")))

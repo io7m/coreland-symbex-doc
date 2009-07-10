@@ -1,0 +1,11 @@
+(section
+  (title "Orientation")
+
+  (subsection
+    (title "Overview")
+
+    (para "This package provides an S-Expression " (footnote
+        (link-ext "http://people.csail.mit.edu/rivest/Sexp.txt"))
+      " parser."))
+
+) ; end of section
