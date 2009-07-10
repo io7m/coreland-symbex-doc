@@ -3,4 +3,8 @@
   (title "Symbex API Reference")
   (contents)
 
+  (include "a-symbex-lex.ud")
+  (include "a-symbex-parse.ud")
+  (include "a-symbex-walk.ud")
+
 ) ; end of section

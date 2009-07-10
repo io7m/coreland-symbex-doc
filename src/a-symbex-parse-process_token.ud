@@ -1,0 +1,30 @@
+(section
+  (ref "symbex_parse_process_token")
+  (title "Symbex.Parse.Process_Token")
+  (para procedure_desc "Retrieve token from stream.")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim procedure_synopsis
+"with Symbex.Parse;
+
+procedure Process_Token
+  (Tree   : in out Tree_t;
+   Token  : in     Lex.Token_t;
+   Status :    out Tree_Status_t);
+pragma Precondition
+  (Initialized (Tree) and
+   Token.Is_Valid     and
+   not Completed (Tree));
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_procedure "Process_Token") " procedure consumes
+      the valid token " (item parameter "Token") " and constructs an
+      abstract syntax tree in " (item parameter "Tree") "."))
+  (subsection
+    (title "Preconditions")
+    (para
+      "The " (item parameter "Tree") " parameter must refer to an
+      uninitialized and incomplete syntax tree and the "
+      (item parameter "Token") " parameter must refer to a valid token.")))

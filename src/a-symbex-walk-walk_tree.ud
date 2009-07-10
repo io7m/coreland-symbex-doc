@@ -1,0 +1,92 @@
+(section
+  (ref "symbex_walk_walk_tree")
+  (title "Symbex.Walk.Walk_Tree")
+  (para procedure_desc "Traverse syntax tree.")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim procedure_synopsis
+"with Symbex.Walk;
+
+generic
+  with procedure Handle_List_Open
+    (List_ID : in     Parse.List_ID_t;
+     Depth   : in     Parse.List_Depth_t;
+     Status  :    out Walk_Status_t);
+
+  with procedure Handle_Symbol
+    (Name          : in     Parse.Node_Symbol_Name_t;
+     List_ID       : in     Parse.List_ID_t;
+     List_Position : in     Parse.List_Position_t;
+     List_Length   : in     Parse.List_Length_t;
+     Status        :    out Walk_Status_t);
+
+  with procedure Handle_String
+    (Data          : in     Parse.Node_String_Data_t;
+     List_ID       : in     Parse.List_ID_t;
+     List_Position : in     Parse.List_Position_t;
+     List_Length   : in     Parse.List_Length_t;
+     Status        :    out Walk_Status_t);
+
+  with procedure Handle_List_Close
+    (List_ID : in     Parse.List_ID_t;
+     Depth   : in     Parse.List_Depth_t;
+     Status  :    out Walk_Status_t);
+
+procedure Walk_Tree
+  (Tree   : in     Parse.Tree_t;
+   Status :    out Walk_Status_t);
+pragma Precondition (Parse.Completed (Tree));
+
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_procedure "Walk_Tree") " procedure traverses the
+      syntax tree referenced by " (item parameter "Tree") ".")
+    (para
+      "The tree is traversed in depth-first order.")
+    (para
+      "The procedure calls generic formal procedure parameters upon
+      encountering various syntactic elements. The procedures must
+      set " (item parameter "Status") " to one of the values of "
+      (item ada_type "Walk_Status_t") ". The assigned value of "
+      (item ada_type "Status") " affects traversal as follows: ")
+      (para
+        (table walk_status_effects
+          (t-row (item "Value")                            (item "Effect"))
+          (t-row (item (item constant "Walk_Continue"))    (item "Traversal continues."))
+          (t-row (item (item constant "Walk_Finish_List")) (item "Traversal of the current list is completed immediately."))
+          (t-row (item (item constant "Walk_Finish_Tree")) (item "Traversal of the tree is completed immediately."))
+          (t-row (item (item constant "Walk_Error"))       (item "Traversal of the tree is completed immediately and the procedure returns an error status."))))
+    (para
+      "The procedure calls " (item ada_procedure "Handle_List_Open")
+      " upon encountering the start of a new list. "
+      (item ada_procedure "Handle_List_Open") " is passed the numeric ID
+      of the current list in " (item parameter "List_ID") ", and the depth of
+      current list in " (item parameter "Depth") ".")
+    (para
+      "The procedure calls " (item ada_procedure "Handle_Symbol")
+      " upon encountering the start of a symbol node. "
+      (item ada_procedure "Handle_Symbol") " is passed the name value of the
+      current node in " (item parameter "Name") ", the numeric ID
+      of the current list in " (item parameter "List_ID") ", the position of
+      the current node in the list in " (item parameter "List_Position") " and
+      the length of the current list in " (item parameter "List_Length") ".")
+    (para
+      "The procedure calls " (item ada_procedure "Handle_String")
+      " upon encountering the start of a symbol node. "
+      (item ada_procedure "Handle_Symbol") " is passed the string value of the
+      current node in " (item parameter "Data") ", the numeric ID
+      of the current list in " (item parameter "List_ID") ", the position of
+      the current node in the list in " (item parameter "List_Position") " and
+      the length of the current list in " (item parameter "List_Length") ".")
+    (para
+      "The procedure calls " (item ada_procedure "Handle_List_Close")
+      " upon encountering the end of the current list. "
+      (item ada_procedure "Handle_List_Close") " is passed the numeric ID
+      of the current list in " (item parameter "List_ID") ", and the depth of
+      current list in " (item parameter "Depth") "."))
+  (subsection
+    (title "Preconditions")
+    (para
+      "The tree referenced by " (item parameter "Tree") " must be complete.")))

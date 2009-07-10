@@ -1,0 +1,27 @@
+(section
+  (ref "symbex_parse_initialize_tree")
+  (title "Symbex.Parse.Initialize_Tree")
+  (para procedure_desc "Initialize tree.")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim procedure_synopsis
+"with Symbex.Parse;
+
+procedure Initialize_Tree
+  (Tree   : in out Tree_t;
+   Status :    out Tree_Status_t);
+pragma Postcondition
+  (((Status  = Tree_OK) and     Initialized (Tree)) or
+   ((Status /= Tree_OK) and not Initialized (Tree)));
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_procedure "Initialize_Tree") " procedure initializes
+      the tree context " (item parameter "Tree") "."))
+  (subsection
+    (title "Postconditions")
+    (para
+      "The value of " (item parameter "Status") " will be set to "
+      (item constant "Tree_OK") " on success or one of the values
+      of " (item ada_type "Tree_Error_Status_t") " on failure.")))

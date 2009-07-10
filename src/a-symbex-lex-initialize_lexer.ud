@@ -1,0 +1,27 @@
+(section
+  (ref "symbex_lex_initialize_lexer")
+  (title "Symbex.Lex.Initialize_Lexer")
+  (para procedure_desc "Initialize lexer.")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim procedure_synopsis
+"with Symbex.Lex;
+
+procedure Initialize_Lexer
+  (Lexer  :    out Lexer_t;
+   Status :    out Lexer_Status_t);
+pragma Postcondition
+  (((Status  = Lexer_OK) and     Initialized (Lexer)) or
+   ((Status /= Lexer_OK) and not Initialized (Lexer)));
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_procedure "Initialize_Lexer") " procedure initializes
+      the lexer context " (item parameter "Lexer") "."))
+  (subsection
+    (title "Postconditions")
+    (para
+      "The value of " (item parameter "Status") " will be set to "
+      (item constant "Lexer_OK") " on success or one of the values
+      of " (item ada_type "Lexer_Error_Status_t") " on failure.")))

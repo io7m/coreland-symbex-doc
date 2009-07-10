@@ -1,0 +1,20 @@
+(section
+  (ref "symbex_parse_completed")
+  (title "Symbex.Parse.Completed")
+  (para function_desc "Tree is completed?")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim function_synopsis
+"with Symbex.Parse;
+
+function Completed
+  (Tree : in     Tree_t) return Boolean;
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_function "Completed") " function returns "
+      (item constant "True") " if the abstract syntax tree " (item parameter "Tree")
+      " is completed. A tree is considered completed when it has
+      consumed a " (item constant "Token_EOF") " token (in a syntactically
+      valid context).")))

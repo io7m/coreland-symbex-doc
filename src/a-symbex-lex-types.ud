@@ -1,0 +1,63 @@
+(section
+  (ref "symbex_lex_types")
+  (title "Symbex.Lex types")
+
+  (subsection
+    (title "Lexer_t")
+    (para-verbatim ada_type_synopsis
+"type Lexer_t is private;")
+    (para "The " (item ada_type "Lexer_t") " type represents the abstract
+      state of the lexer."))
+
+  (subsection
+    (title "Lexer_Status_t")
+    (para-verbatim ada_type_synopsis
+"type Lexer_Status_t is
+  (Lexer_OK,
+   Lexer_Needs_More_Data,
+   Lexer_Error_Line_Overflow,
+   Lexer_Error_Out_Of_Memory,
+   Lexer_Error_Stream_Error,
+   Lexer_Error_Early_EOF);")
+    (para "The " (item ada_type "Lexer_Status_t") " type represents the
+      current status of the lexer after consuming a token."))
+
+  (subsection
+    (title "Lexer_Error_Status_t")
+    (para-verbatim ada_type_synopsis
+"subtype Lexer_Error_Status_t is Lexer_Status_t
+  range Lexer_Error_Line_Overflow .. Lexer_Status_t'Last;")
+    (para "The " (item ada_type "Lexer_Error_Status_t") " subtype represents the
+      subset of the lexer status values that represent error conditions."))
+
+  (subsection
+    (title "Token_Kind_t")
+    (para-verbatim ada_type_synopsis
+"type Token_Kind_t is
+  (Token_Quoted_String,
+   Token_Symbol,
+   Token_List_Open,
+   Token_List_Close,
+   Token_EOF);")
+    (para "The " (item ada_type "Token_Kind_t") " type represent the different
+      kinds of tokens that may be returned by the lexer."))
+
+  (subsection
+    (title "Line_Number_t")
+    (para-verbatim ada_type_synopsis
+"type Line_Number_t is new Positive;")
+    (para "The " (item ada_type "Line_Number_t") " type represents the input
+      line number associated with a given token."))
+
+  (subsection
+    (title "Token_t")
+    (para-verbatim ada_type_synopsis
+"type Token_t is record
+  Is_Valid    : Boolean;
+  Line_Number : Line_Number_t;
+  Kind        : Token_Kind_t;
+  Text        : Ada.Strings.Wide_Unbounded.Unbounded_Wide_String;
+end record;")
+    (para "The " (item ada_type "Token_t") " type represents a token or lexeme."))
+
+) ; end of section

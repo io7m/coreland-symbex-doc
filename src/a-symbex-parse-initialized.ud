@@ -1,0 +1,18 @@
+(section
+  (ref "symbex_parse_initialized")
+  (title "Symbex.Parse.Initialized")
+  (para function_desc "Tree is initialized?")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim function_synopsis
+"with Symbex.Parse;
+
+function Initialized
+  (Tree : in     Tree_t) return Boolean;
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_function "Initialized") " function returns "
+      (item constant "True") " if the abstract syntax tree " (item parameter "Tree")
+      " is initialized.")))

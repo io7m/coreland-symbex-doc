@@ -1,0 +1,95 @@
+(section
+  (ref "symbex_parse_types")
+  (title "Symbex.Parse types")
+
+  (subsection
+    (title "Tree_t")
+    (para-verbatim ada_type_synopsis
+"type Tree_t is private;")
+    (para "The " (item ada_type "Tree_t") " type represents an abstract
+      syntax tree."))
+
+  (subsection
+    (title "Tree_Status_t")
+    (para-verbatim ada_type_synopsis
+"type Tree_Status_t is
+  (Tree_OK,
+   Tree_Error_Excess_Closing_Parentheses,
+   Tree_Error_Unterminated_List);")
+    (para "The " (item ada_type "Tree_Status_t") " type represents the
+      current status of the parser after consuming a token."))
+
+  (subsection
+    (title "Tree_Error_Status_t")
+    (para-verbatim ada_type_synopsis
+"subtype Tree_Error_Status_t is Parseer_Status_t
+  range Tree_Error_Excess_Closing_Parentheses .. Tree_Status_t'Last;")
+    (para "The " (item ada_type "Tree_Error_Status_t") " subtype represents the
+      subset of the parser status values that represent error conditions."))
+
+  (subsection
+    (title "Node_Kind_t")
+    (para-verbatim ada_type_synopsis
+"type Node_Kind_t is
+  (Node_String,
+   Node_Symbol,
+   Node_List);")
+    (para "The " (item ada_type "Node_Kind_t") " type represents the different
+      kinds of nodes that present in the syntax tree."))
+
+  (subsection
+    (title "Node_t")
+    (para-verbatim ada_type_synopsis
+"type Node_t is private;")
+    (para "The " (item ada_type "Node_t") " type represents an element of
+      a list."))
+
+  (subsection
+    (title "Node_Symbol_Name_t")
+    (para-verbatim ada_type_synopsis
+"subtype Node_Symbol_Name_t is Ada.Strings.Wide_Unbounded.Unbounded_Wide_String;")
+    (para "The " (item ada_type "Node_Symbol_Name_t") " type represents the
+      name of a symbol node."))
+
+  (subsection
+    (title "Node_String_Data_t")
+    (para-verbatim ada_type_synopsis
+"subtype Node_String_Data_t is Ada.Strings.Wide_Unbounded.Unbounded_Wide_String;")
+    (para "The " (item ada_type "Node_String_Data_t") " type represents the
+      data present in a quoted string node."))
+
+  (subsection
+    (title "List_t")
+    (para-verbatim ada_type_synopsis
+"type List_t is private;")
+    (para "The " (item ada_type "List_t") " type represents a list of nodes."))
+
+  (subsection
+    (title "List_ID_t")
+    (para-verbatim ada_type_synopsis
+"type Line_ID_t is new Positive;")
+    (para "The " (item ada_type "List_ID_t") " type represents a unique numeric
+      identifier for a given list."))
+
+  (subsection
+    (title "List_Length_t")
+    (para-verbatim ada_type_synopsis
+"type Line_Length_t is new Natural;")
+    (para "The " (item ada_type "List_Length_t") " type represents the length
+      of a given list."))
+
+  (subsection
+    (title "List_Position_t")
+    (para-verbatim ada_type_synopsis
+"type Line_Position_t is new Positive;")
+    (para "The " (item ada_type "List_Position_t") " type represents the position
+      of a node in a given list."))
+
+  (subsection
+    (title "List_Depth_t")
+    (para-verbatim ada_type_synopsis
+"type Line_Depth_t is new Natural;")
+    (para "The " (item ada_type "List_Depth_t") " type represents the nesting
+      depth of a given list."))
+
+) ; end of section

@@ -1,0 +1,18 @@
+(section
+  (ref "symbex_lex_initialized")
+  (title "Symbex.Lex.Initialized")
+  (para function_desc "Lexer is initialized?")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim function_synopsis
+"with Symbex.Lex;
+
+function Initialized
+  (Lexer  : in     Lexer_t) return Boolean;
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_function "Initialized") " function returns "
+      (item constant "True") " if the lexer " (item parameter "Lexer")
+      " is initialized.")))

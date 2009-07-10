@@ -1,0 +1,16 @@
+(section
+  (ref "symbex_walk_types")
+  (title "Symbex.Walk types")
+
+  (subsection
+    (title "Walk_Status_t")
+    (para-verbatim ada_type_synopsis
+"type Walk_Status_t is
+  (Walk_Continue,
+   Walk_Finish_Last,
+   Walk_Finish_Tree,
+   Walk_Error);")
+    (para "The " (item ada_type "Walk_Status_t") " type represents an
+      instruction to the traversal procedure."))
+
+) ; end of section

@@ -1,0 +1,66 @@
+(section
+  (ref "symbex_lex_get_token")
+  (title "Symbex.Lex.Get_Token")
+  (para procedure_desc "Retrieve token from stream.")
+  (subsection
+    (title "Synopsis")
+    (para-verbatim procedure_synopsis
+"with Symbex.Lex;
+
+type Stream_Status_t is
+  (Stream_OK,
+   Stream_EOF,
+   Stream_Error);
+
+Invalid_Token : constant Token_t;
+
+generic
+  with procedure Read_Item
+    (Item   :     out Wide_Character;
+     Status :     out Stream_Status_t);
+
+procedure Get_Token
+  (Lexer     : in out Lexer_t;
+   Token     :    out Token_t;
+   Status    :    out Lexer_Status_t);
+pragma Precondition (Initialized (Lexer));
+pragma Postcondition
+  (((Status  = Lexer_OK) and (Token /= Invalid_Token)) or
+   ((Status /= Lexer_OK) and (Token  = Invalid_Token)));
+"))
+  (subsection
+    (title "Description")
+    (para
+      "The " (item ada_procedure "Get_Token") " procedure retrieves
+      a token from the stream emulation provided by the provided "
+      (item ada_procedure "Read_Item") " generic formal procedure parameter.")
+    (para
+      "The " (item ada_procedure "Get_Token") " procedure must be called
+      repeatedly and will set " (item parameter "Status") " to "
+      (item constant "Lexer_Needs_More_Data") " until a full token
+      has been read and processed, whereupon it will set "
+      (item parameter "Status") " to " (item constant "Lexer_OK")
+      " and " (item parameter "Token") " will refer to a valid token.")
+    (para
+      "Lexical analysis is complete when a token of type "
+      (item constant "Token_EOF") " is returned.")
+    (para
+      "The " (item ada_procedure "Read_Item") " procedure must
+      return a single " (link-ext "http://unicode.org" "Unicode")
+      " character in " (item parameter "Item") " when called and
+      must set " (item parameter "Status") " to " (item constant "Stream_OK")
+      ". If no more characters are available, the procedure must set
+      status to " (item constant "Stream_EOF") ". The procedure must
+      be safe to call repeatedly even if no more characters are available.
+      If the procedure encounters an error, it must set " (item constant
+      "Stream_Error") ". The results are undefined if the procedure raises an
+      exception."))
+  (subsection
+    (title "Postconditions")
+    (para
+      "The value of " (item parameter "Status") " will be set to "
+      (item constant "Lexer_OK") " and " (item parameter "Token")
+      " will refer to a valid token when one has been fully read
+      and processed. The value of " (item parameter "Status") " will
+      be set to one of the values of  " (item ada_type "Lexer_Error_Status_t")
+      " on failure.")))
